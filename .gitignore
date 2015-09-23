@@ -1,0 +1,7 @@
+Binaries/
+Build/
+Intermediate/
+Saved/
+.sdf
+*.sdf
+NruDemo.v12.suo
