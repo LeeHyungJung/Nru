@@ -4,13 +4,19 @@
 
 #include "GameFramework/Actor.h"
 #include "Components/SceneComponent.h"
+#include "SpawnActorData.h"
 #include "SpawnVolume.generated.h"
 
 UCLASS()
 class NRUDEMO_API ASpawnVolume : public AActor
 {
 	GENERATED_BODY()
-	
+
+public:
+	/** BoxComponent to specify the spawning area within the level. */
+	UPROPERTY(VisibleInstanceOnly, Category = Spawn)
+	UBoxComponent * SpawingRoot;
+
 public:	
 	// Sets default values for this actor's properties
 	ASpawnVolume();
@@ -19,11 +25,14 @@ public:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable, category = "SpawnVolume")
-	void AddSpawnPosition(USceneComponent * comp);
+	void BuildSpawnData();	
 
 	UFUNCTION(BlueprintCallable, category = "SpawnVolume")
-	void OnSpawn();	
+	void OnSpawnActor();
 
-private:
-	TArray<USceneComponent *> CompArray;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+	FString Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawn)
+	TArray<FSpawnVolumeData> VolumeDataArray;
 };

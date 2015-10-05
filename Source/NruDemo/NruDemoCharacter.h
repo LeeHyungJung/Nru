@@ -41,6 +41,12 @@ class ANruDemoCharacter : public APaperCharacter
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = NruDemo)
 	ETypeEnum TypeEnum;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = NruDemo)
+	int32 CharLevel;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = NruDemo)
+	FString CharName;
+
 public:
 	virtual void Tick(float DeltaSeconds) override;
 

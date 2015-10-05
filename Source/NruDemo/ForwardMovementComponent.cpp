@@ -7,8 +7,6 @@ void UForwardMovementComponent::InitializeComponent()
 {
 	Super::InitializeComponent();
 
-	MoveDirection = FVector(1.0f, 0.0f, 0.0f);
-
 	ForwardMoveState = EForwardMovementComponentStateEnum::FE_Move;
 }
 
@@ -30,6 +28,7 @@ void UForwardMovementComponent::TickComponent(float DeltaTime, enum ELevelTick T
 		break;
 	case EForwardMovementComponentStateEnum::FE_ThrowBack:
 		{
+			
 			if (IsMovingOnGround())
 			{
 				ForwardMoveState = EForwardMovementComponentStateEnum::FE_Move;
@@ -49,11 +48,12 @@ void UForwardMovementComponent::Stop()
 	ForwardMoveState = EForwardMovementComponentStateEnum::FE_Stop;
 }
 
-void UForwardMovementComponent::OnThrowBack_Implementation(FVector InputDirection)
+void UForwardMovementComponent::OnThrowBack(FVector InputDirection)
 {
-	ForwardMoveState = EForwardMovementComponentStateEnum::FE_ThrowBack;
-	const FRotator rot(0, 45 * 180 / PI, 0);
-	InputDirection = -1 * InputDirection;
-	FVector result = rot.RotateVector(InputDirection);
-	AddForce(result);
+	if (ForwardMoveState != EForwardMovementComponentStateEnum::FE_ThrowBack)
+	{
+		ForwardMoveState = EForwardMovementComponentStateEnum::FE_ThrowBack;
+
+		AddImpulse(InputDirection * 100000);
+	}
 }

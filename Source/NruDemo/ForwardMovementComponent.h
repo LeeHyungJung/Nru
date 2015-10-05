@@ -34,10 +34,8 @@ public:
 	UFUNCTION(BlueprintCallable, category = "ForwardMove")
 	void Stop();
 
-	UFUNCTION(BlueprintNativeEvent, category = "ForwardMove")
+	UFUNCTION(BlueprintCallable, category = "ForwardMove")
 	void OnThrowBack(FVector InputDirection);
-
-	virtual void OnThrowBack_Implementation(FVector InputDirection);
 
 protected:
 	//Init

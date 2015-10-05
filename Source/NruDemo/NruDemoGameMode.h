@@ -3,6 +3,7 @@
 #pragma once
 #include "GameFramework/GameMode.h"
 #include "SpawnActorData.h"
+#include "SpawnVolume.h"
 #include "NruDemoGameMode.generated.h"
 
 // The GameMode defines the game being played. It governs the game rules, scoring, what actors
@@ -17,14 +18,23 @@ class ANruDemoGameMode : public AGameMode
 public:
 	ANruDemoGameMode();
 
-	UFUNCTION(BlueprintNativeEvent, category = "Spawn")
-	void GetSpawnVolumeData(UPARAM(ref) TArray<FSpawnVolumeData> & arr , const FString & Name);
+	UPROPERTY(BlueprintReadWrite, category = "spawn")
+	UDataTable * SpawnVolumeTable;
 
-	virtual void GetSpawnVolumeData_Implementation(UPARAM(ref) TArray<FSpawnVolumeData> & arr, const FString & Name);
-/*
+	UPROPERTY(BlueprintReadWrite, category = "spawn")
+	UDataTable * SpawnActorTable;
 
-	UFUNCTION(BlueprintNativeEvent, category = "Spawn")
-	void OnGetSpawnActorData(int32 Index, struct FSpawnActorData & data);
+	TArray<ASpawnVolume *> SpawnVolumeArray;
 
-	virtual void OnGetSpawnActorData_Implementation(int32 Index, struct FSpawnActorData & data);*/
+	UFUNCTION(BlueprintCallable, category = "spawn")
+	void AddSpawnVolume(ASpawnVolume * SpawnVolume);
+
+	UFUNCTION(BlueprintCallable, category = "spawn")
+	void NotiySpawn(const FString & Name);
+
+	UFUNCTION(BlueprintCallable, category = "spawn")
+	void GetSpawnVolumeData(const FString & Name,UPARAM(ref) TArray<FSpawnVolumeData> & ArrSpawnVolume);
+
+	UFUNCTION(BlueprintCallable, category = "spawn")
+	void GetSpawnActorData(int32 Index, UPARAM(ref) FSpawnActorData & ActorData);
 };
