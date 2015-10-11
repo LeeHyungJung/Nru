@@ -35,7 +35,7 @@ public:
 	void Stop();
 
 	UFUNCTION(BlueprintCallable, category = "ForwardMove")
-	void OnThrowBack(FVector InputDirection);
+	void OnThrowBack(FVector InputDirection,int32 Force);
 
 protected:
 	//Init

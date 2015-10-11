@@ -25,6 +25,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Action)
 	bool CheckCoolTime;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Action)
+	int32 Level;
+
 public:	
 	// Sets default values for this component's properties
 	UFireComponent();

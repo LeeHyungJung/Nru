@@ -48,12 +48,12 @@ void UForwardMovementComponent::Stop()
 	ForwardMoveState = EForwardMovementComponentStateEnum::FE_Stop;
 }
 
-void UForwardMovementComponent::OnThrowBack(FVector InputDirection)
+void UForwardMovementComponent::OnThrowBack(FVector InputDirection,int32 Force)
 {
 	if (ForwardMoveState != EForwardMovementComponentStateEnum::FE_ThrowBack)
 	{
 		ForwardMoveState = EForwardMovementComponentStateEnum::FE_ThrowBack;
 
-		AddImpulse(InputDirection * 100000);
+		AddImpulse(InputDirection * Force);
 	}
 }

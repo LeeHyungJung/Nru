@@ -3,6 +3,7 @@
 #pragma once
 
 #include "PaperCharacter.h"
+#include "Engine/DataTable.h"
 #include "NruDemoCharacter.generated.h"
 
 // This class is the default character for NruDemo, and it is responsible for all
@@ -48,7 +49,7 @@ class ANruDemoCharacter : public APaperCharacter
 	FString CharName;
 
 public:
-	virtual void Tick(float DeltaSeconds) override;
+	virtual void Tick(float DeltaSeconds);
 
 protected:
 	// The animation to play while running around

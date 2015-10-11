@@ -69,7 +69,9 @@ void UFireComponent::OnDoAction_Implementation()
 			// Get a random rotation for the spawned item.
 			FRotator SpawnRotation = GetComponentRotation();
 
-			World->SpawnActor<AActor>(ActionObject, SpawnLocation, SpawnRotation, SpawnParams);
+			ANruActionObject * actor = World->SpawnActor<ANruActionObject>(ActionObject, SpawnLocation, SpawnRotation, SpawnParams);
+
+			actor->Level = Level;
 		}
 	}
 
